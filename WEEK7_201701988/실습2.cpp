@@ -4,17 +4,18 @@ bool funcA() {
 	std::cout << "input(number) : ";
 	std::cin >> c;
 	if (c < 10) //Let's assume this is exception
-		return false;
+		throw std::out_of_range("Invalid Input!");
 
 	return true;
 }
 int main() {
 
-	if (funcA())
-	{
+	try {
+		funcA();
 	}
-	else {
-		std::cout << "Exception : Invalid Input!!" << std::endl;
+	catch (std::out_of_range& e) {
+		std::cout << "Exception : " << e.what() << std::endl;
 	}
+
 	return 0;
 }
